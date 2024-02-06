@@ -16,16 +16,16 @@ backgroundImageTag.onload = uploadBackground;
 backgroundImageTag.scr = backgroundImage;
 
 roverImageTag = new Image();
-roverImageTag = uploadBackground;
-roverImageTag = backgroundImage;
+roverImageTag.onload = uploadRover ;
+roverImageTag.scr = roverImage;
 }
 
 function uploadBackground(){
-    ctx.drawImage(backgroundImageTag, 0 ,0 ,canvas.width, canvas.heigth);
+    ctx.drawImage(backgroundImageTag, 0 ,0 ,canvas.width, canvas.height);
 }
 
 function uploadRover(){
-    ctx.drawImage(roverImageTag, roverX  ,roverY, canvas.width, canvas.heigth);
+    ctx.drawImage(roverImageTag, roverX  ,roverY, roverLength, roverHeight);
 }
 
 window.addEventListener("keydown", myKeyDown);
@@ -39,17 +39,47 @@ function myKeyDown(e){
     }
 
     if(keyPressed == '40'){
-        up()
-        console.log("BAIXO);
+        down()
+        console.log("BAIXO");
     }
 
     if(keyPressed == '37'){
-        up()
+        left()
         console.log("ESQUERDA");
     }
 
     if(keyPressed == '39'){
-        up()
+        right()
         console.log("DIREITA");
     }
 }
+
+function up(){
+
+    roverY = -10;
+    uploadBackground();
+    uploadRover();
+}
+
+function down(){
+
+    roverY = 10;
+    uploadBackground();
+    uploadRover();
+}
+
+function right(){
+
+    roverX = 10;
+    uploadBackground();
+    uploadRover();
+}
+
+function left(){
+
+    roverX = -10;
+    uploadBackground();
+    uploadRover();
+}
+
+
